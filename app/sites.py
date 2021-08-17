@@ -12,7 +12,6 @@ from flask import (
 
 import pulumi
 import pulumi.automation as auto
-from pulumi_aws import s3
 
 bp = Blueprint("sites", __name__, url_prefix="/sites")
 
@@ -114,6 +113,7 @@ def list_sites():
                 # no-op program, just to get outputs
                 program=lambda: None,
             )
+            print(f"stack={stack.name}")
             outs = stack.outputs()
             sites.append(
                 {
@@ -123,7 +123,7 @@ def list_sites():
                 }
             )
     except Exception as exn:
-        flash(str(exn), category="danger")
+        flash(f"B:{str(exn)}", category="danger")
 
     return render_template("sites/index.html", sites=sites)
 

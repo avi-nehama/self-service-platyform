@@ -6,7 +6,7 @@ import pulumi.automation as auto
 
 def ensure_plugins():
     ws = auto.LocalWorkspace()
-    ws.install_plugin("aws", "v4.0.0")
+    ws.install_plugin("azure-native", "v1.22.0")
 
 
 def create_app():
