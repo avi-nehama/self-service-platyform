@@ -2,12 +2,12 @@
 
 {% block nav %}
   <ul class="nav nav-pills">
-    <li class="nav-item fs-6"><a href="#" class="nav-link active">Create VM</a></li>
+    <li class="nav-item fs-6"><a href="{{ url_for('index') }}"  class="nav-link active">Home</a></li>
   </ul>
 {% endblock %}
 
 {% block header %}
-  {% block title %}Deployed Virtual Machines{% endblock %}
+  {% block title %}Deployed Environments{% endblock %}
 {% endblock %}
 
 {% block content %}
@@ -23,6 +23,33 @@
         </div>
       </div>
       {%  endif %}
+
+      {% for vm in vms %}
+        <tr>
+          <td class="align-bottom" colspan="4">
+            <div class="p-1">
+              {{ vm["name"] }}
+            </div>
+          </td>
+          <td>
+            <div class="float-end p-1">
+              <form action="{{ url_for('virtual_machines.delete_vm', id=vm['name']) }}" method="post">
+                <input class="btn btn-sm btn-danger" type="submit" value="Delete">
+              </form>
+            </div>
+          </td>
+        </tr>
+      {% endfor %}
+        <tr>
+          <td colspan="5"><a href="{{ url_for("virtual_machines.create_vm") }}" class="btn btn-primary">Add environment</a></td>
+        </tr>
+
+
+
+
+
+
     </tbody>
   </table>
 {% endblock %}
+
