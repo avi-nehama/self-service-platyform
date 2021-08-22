@@ -19,14 +19,14 @@ LOCATION = "eastus"
 
 def create_pulumi_program(env_name: str):
     resource_group = azure_native.resources.ResourceGroup("resourceGroup", location=LOCATION,  resource_group_name=env_name)
-    storage_account = azure_native.storage.StorageAccount("storageAccount",
-        account_name="livecloudforteamssa",
-        kind="StorageV2",
+
+    virtual_network = azure_native.network.VirtualNetwork("virtualNetwork",
+        address_space=azure_native.network.AddressSpaceArgs(
+            address_prefixes=["10.0.0.0/16"],
+        ),
         location="eastus",
         resource_group_name=resource_group.name,
-        sku=azure_native.storage.SkuArgs(
-          name="Standard_GRS",
-        ),
+        virtual_network_name="vnet1"
     )
 
 @bp.route("/", methods=["GET"])
@@ -85,10 +85,15 @@ def create_vm():
                 f"Error: Environment with name '{stack_name}' already exists, pick a unique name",
                 category="danger",
             )
+        except auto.CommandError as e:
+            flash(
+                f"Error: {format(e)}",
+                category="danger",
+            )
+
 
         return redirect(url_for("virtual_machines.list_vms"))
     return render_template("virtual_machines/create.html")
-
 
 @bp.route("/<string:id>/delete", methods=["POST"])
 def delete_vm(id: str):

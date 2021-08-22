@@ -27,16 +27,16 @@ def create_app():
 
     app.register_blueprint(sites.bp)
 
-    from . import databases
+    # from . import databases
 
-    app.register_blueprint(databases.bp)
+    # app.register_blueprint(databases.bp)
 
     from . import virtual_machines
 
     app.register_blueprint(virtual_machines.bp)
 
-    from . import vpcs
+    # from . import vpcs
 
-    app.register_blueprint(vpcs.bp)
+    # app.register_blueprint(vpcs.bp)
 
     return app
