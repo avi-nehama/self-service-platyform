@@ -1,12 +1,8 @@
-# Self Service Infrastructure Platyform
+# Self Service Infrastructure based on Pulumi
 
-This application represents a starting point for how you might develop a self-service infrastructure platform on top of [Pulumi](https://pulumi.com)'s [Automation API](https://www.pulumi.com/blog/automation-api/).
+This application is a self-service infrastructure platform on top of [Pulumi](https://pulumi.com)'s [Automation API](https://www.pulumi.com/blog/automation-api/).
 
-In this case, we've used Python, [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templates to create a web portal that allows users to deploy their own infrastructure.
-
-One resource that we expose are static websites, which you can deploy either by passing in a URL to an HTML file or by manually typing out the content. We've exposed all of the CRUD operations, so you can `update` and `delete` your websites as well.
-
-This idea is just a starting point for how you might build out your own infrastructure platform. The static website resource is fully developed, but databases, virtual machines and VPCs are not yet coded to completion.
+It is based on Python, [Flask](https://flask.palletsprojects.com/en/1.1.x/) and [Jinja](https://jinja.palletsprojects.com/en/2.11.x/) templates to create a web portal that allows users to deploy their own infrastructure.
 
 Alternatively, you could expose this functionality as a [REST API](https://github.com/pulumi/automation-api-examples/tree/main/python/pulumi_over_http), allowing deployments via CLI in addition to a web interface.
 
